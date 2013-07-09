@@ -1,0 +1,41 @@
+BEFOREHIMITSHEDGESANDTREESPURP
+
+As the key is 6 characters long I split the encrypted message into even amounts
+of 6. Then I stored each first, second, third, fourth, fifth and sixth element 
+together into new arrays. I did this because I wanted to find the most common 
+letter at each position because I knew that the key encrypted each position in 
+exactly the same way. The encrypted message was long enough for this
+method to provide reasonable chances of success.
+
+Once I found the most common letter I could do frequency analysis on it to 
+determine a good candidate for that key letter. By finding the most common 
+character at each position I could minus its index from the index of 'E' (4) to
+give me the same difference that was used to shift it in encryption. With 
+this difference I could look up which character sits in the alphabet at that 
+position, this became my key letter for that position.
+
+
+Doing this for each set of letters created a key with 6 characters. I now 
+copied this key out over the whole length of my message (in the same way as 
+exercise 2). Then iterated over the encryption shifting each letter left to the 
+value of each letter corresponding in my key. Again using the modulo function 
+on 26 to handle the wrap around.
+
+This gave me my first decryption, which was almost completely readable.
+
+On further inspection of the result it only gave me ⅚ correct key letters, this 
+was obvious as some words completed and others were being interrupted at 
+every 6th letter. The reason for this is the most common letter found is not 
+always going to be what I assume (based on frequency analysis) to be E, if its 
+T for example then the shift is wrong and therefore my generated key letter 
+is wrong.
+
+Using a pen and paper I scanned my decryption attempt and found a few 
+words where there could only be one letter that could complete a word. An 
+example is “MEFORE” which is quite certainly “BEFORE” so I found the character
+in the original encryption (as ‘M’ here was from my failed decryption) and 
+shifted that so it would read ‘B’ - The first letter was ‘K’ so the difference 
+to ‘B’ would be what I needed to shift by to replicate the original encryption. 
+This gave me 9 which in the alphabet is ‘J’.
+
+Running this again with an edited key gave me a full decryption.

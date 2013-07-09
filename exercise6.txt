@@ -1,0 +1,47 @@
+OBEREADYFOROPERATIONSTHISDAYTH
+
+Starting with a fixed key length of 6 I found the col_length in the same way 
+as exercise 5.
+I ran the transposition cipher from exercise 5 on it which left me with a hash 
+with each column, I called this ‘groups’.
+I could trust that these columns were correct as the same code is reused from 
+exercise 5 which gave me a correct decryption. I now needed to rearrange the 
+columns programmatically to reveal the correct order for how the columns were 
+added at the final stage of encryption which was based on some unknown key.
+
+To do this I made an array of common word suffixes for example ‘th’. 
+Then I used the permutation() method on the key length (6), so I got back an 
+array of all permutations (possible combinations) of the values [1,2,3,4,5,6]. 
+Which is 720.
+
+Currently the result of my first transposition cipher was sitting at this 
+starting order of 1-6. So I looped over each permutation, moved the 
+groups columns based on the new permutation. I now had a new 
+transposition cipher result which I needed to check to see if it was the 
+right combination. 
+
+THISISTHEMESSAGEDONTDECRYPTME
+THISI STHEM ESSAG EDONT DECRY PTME
+
+permutation = [1,2,3,4,5,6]
+{1 => [T,H,I,S,I], 2 => [S,T,H,E,M, 3 => [ESSAG], 4 => [EDONT],
+ 5 => [DECRY], 6 => [PTME]}
+ 
+permutation = [2,3,1,4,6,5]
+{2 => [S,T,H,E,M, 3 => [ESSAG], 1 => [T,H,I,S,I], 4 => [EDONT],
+  6 => [PTME], 5 => [DECRY]}
+
+To do this I took each set of 6 letters and checked to see if any included and 
+of my word suffixes (beacuse they were smaller than words and more likely to 
+appear when two columns become in order side by side), if the link contained 
+any of these letters in the exact order add it to a count ‘matches’. If that 
+permutation ended with more than a variable (I used 50 based on the encryption 
+size, but found it needed to be lowered down to 40 on different encryptions) 
+number then I could assume this contained enough english suffixes to be the 
+answer. I could make this assumption because having this many matches would 
+be more than coincidence. 
+
+Once I hit the match I stopped the permutation loop and returned the 
+permutation it passed on along with the decrypted message formed from 
+the permutation mapping for the columns.
+

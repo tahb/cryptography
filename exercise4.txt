@@ -1,0 +1,36 @@
+ENCEWHICHSHEEXERCISEDOVERTHOSE
+
+In addition to the same code and theory used in exercise 3.
+
+I needed to determine the key length that was previously give to me.
+I started by looking at the encryption and found common patterns of three 
+letters and counted the difference between them, on the basis that they key 
+was probably at the same place when it encrypted both parts. 
+
+‘WZZ’ appears and soon after is repeated in the exact same order. We can 
+guess that the same original letters were encrypted with the same part of 
+the key at these points. By working out which number bridges the gap while 
+ensuring all three characters are at the same point gives the key length of 7.
+
+ICGXWZZ PTNAOQV IGBOWZZ
+
+I put my key length into my code from exercise 3 to decrypt. I knew from the 
+first time I used it the frequency analysis isn’t 100% so I broke my codes 
+attempted decryption up into groups of my calculated key length and looked 
+for patterns. There were consistent points at 3 and 4 where potential words 
+were being disrupted and points at 12567 which made full words:
+
+ENGRWHI CHWUEEX = points 5,6,7,1,2 spells the word 'which' (words appeared 
+complete at these points multiple times)
+
+Knowing this I could change my keys at 3 and 4 until I completed an obvious 
+word:
+
+GTLRLES SWSETHY = “less worthy” - "SE" turned into "OR" completes a word that 
+couldn't be spelt any other way and make sense in context to the word next 
+to it.
+
+I then found the original character index in the encryption to can obtain the 
+initial character and got the difference between that and my guess of O and R 
+(in the above example) which completed my key and provides a full decryption 
+for the rest of the message.

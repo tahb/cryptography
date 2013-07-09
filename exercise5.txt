@@ -1,0 +1,40 @@
+TSOMESAIDMONEYLENDERINTHENORTH
+
+I began by creating an array of most common english words (which can be 
+found in the source). I knew from the task that the decryption would be taken 
+from an English book. Then I took in the key range, which I knew was between 
+4 and 8. For each key in the range I ran my transposition method.
+
+Each time it ran it would take the key and divide it with the encrypted message 
+length (840) to give a figure which represents the column depth, i.e how many 
+chars per column including remainders wrapping along the bottom.
+
+I then made a hash which contained key number of pairs, the key would 
+represent a column number and the value its associated characters on that 
+column. I went over each character of the encrypted message and using modulo 
+I split the characters up into groups of col_length, then stored them into 
+groups as they appeared horizontally as seen in a below example.
+
+{y => [x]}
+
+THISISTHEMESSAGEDONTDECRYPTME
+THISI STHEM ESSAG EDONT DECRY PTME
+
+{1 => [T,H,I,S,I], 2 => [S,T,H,E,M, 3 => [ESSAG], 4 => [EDONT],
+ 5 => [DECRY], 6 => [PTME]}
+
+With this I had a hash of y number of groups, each with col_length number 
+of characters (no remainders in this case). Knowing this I went over the whole 
+data structure col_length times, each time grabbing the same character from 
+each group (in sequential order) and putting it into a temp answer variable. 
+This reversed the encryption method for this key number and returned a long 
+array.
+
+Each time the transposition method returned an array of letters I compared it 
+each one against against my common words, to see how many of those words 
+were included in the transposition attempt. If there were more than 3 (chosen 
+variable) words detected I could assume that this was more than letters 
+appearing in those orders by coincidence and this answer contained english and 
+was in fact the correct key size.
+
+This returned the complete decryption. 

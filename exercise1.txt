@@ -1,0 +1,21 @@
+RHERSAYINGWITHTENDERRAILLERYWH
+
+Using Ruby I created a method which analysed the encrypted message and found th
+e most common letter by iterating over each letter and adding one to its 
+counter. As in the english alphabet 'E' is the most frequently used character
+I could presume that the most common letter in the encryption (which was ‘X’) 
+was originally 'E' in the plaintext decryption.
+
+Knowing this I found the difference between 'E' and 'X' which is 19, 
+this gives me the shift amount used in encryption. As this is a caesar cipher 
+I also know that this shift amount is used on every letter in the original 
+message to form the encryption.
+
+Now I iterated over each character and moved it 19 spaces to the left to find
+its original value. Using modulo 26 (alphabet length) to wrap around if the 
+number fell into minus figures.
+
+
+An alternative way of finding the shift amount would of been manually changing
+the shift amount variable for each number between 1 and 25 (as 0 is the current
+state) until the output (decryption) became legible.

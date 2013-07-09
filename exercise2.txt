@@ -1,0 +1,22 @@
+IONHADBEENGRANTEDINOBEDIENCETO
+
+First I had to create a new key that took the given key and duplicated it so it 
+covered the length of any incoming message including any remainders at the 
+end. This gave me a key string the same length as the encryption which is 
+important because that aligns each character with the part of the key it was 
+originally encrypted with.
+
+KEYKEYKEYKEYKEYKEYKEYKEYKEYKEYKEYKEY
+THISISTHEMESSAGEPLEASEDONTDECRYPTME
+
+Next I iterated over each letter in the key, I could of gone over each letter in
+the encryption but they were the same length so it didn't matter. As I went 
+I kept track of the index position in the key for comparison with the 
+encryption. I found out the index value of that key letter in the alphabet 
+to which returned a number between 0-25. With this number I compared 
+it (using the stored index number) to the same point in the message and 
+shifted it by that amount, again using modulo to handle the wrap around.
+
+I put this new character into an answer array which slowly formed the 
+complete decryption.
+

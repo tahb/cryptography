@@ -1,0 +1,42 @@
+E|WHO|HAD|LISTENED|WITH|THE|GR
+
+I started by checking the tess27.txt file to count the letter frequencies up
+in this particular text to get a more reliable result from the later use of
+frequency analysis.
+
+Counted letter frequency in file - Hash1
+Counted letter frequency in encryption - Hash2
+Sorted both A-Z.
+Created hash of changes from the same element in each hash. 
+Changes = { Hash1[n] => Hash2[n] } 
+
+With this first list of changes I went over each character in the encryption 
+and found its key position in Changes and changed the value to the value 
+found in the mapping.
+
+I could assume the most common character would map to the space as 
+this is encoded with a 27-character alpahbet which includes a space. It 
+was twice the size of the second highest of which would of been 'E'. 
+This would guarantee me the correct word sizes, from here I could 
+start piecing together the message by manually editing the Changes hash 
+with the correct mapping, as frequency analysis was highlight unlikely
+to correctly map every letter. For example some letters had the same 
+counts. 
+
+I ran the decryption once using a full set of changes based entirely on 
+frequency analysis and from the results was able to manipulate the 
+changes mapping to the correct values.
+
+Starting with the small words and working up I found a letter that looked 
+out of place. I scanned through the rest of the message and found where 
+it also appeared, from this I could complete one or two words confidently. 
+Then I changed the appropriate mapping so in the next result it would 
+include the correct letters throughout. 
+
+This left me with two mappings pointing to the same character. I knew my 
+edited mapping was correct so the other one must be wrong, so I replaced 
+its mapping to the symbol ‘+’. Now when I tried to decrypt it I could look for 
+all the plus signs and figure out what letter went in that place. Following 
+this chain system I went along until all the letters were accounted for and 
+the correct answer was produced.
+
